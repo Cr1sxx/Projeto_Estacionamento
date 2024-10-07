@@ -1,0 +1,14 @@
+C:\Users\Cristhian\documents\CRISTHIAN\Analise e Desenvolvimento de Sistemas\2024.1\ATP\TrabalhoATP\Estacionamento\bin\Debug\net8.0\Estacionamento.exe
+C:\Users\Cristhian\documents\CRISTHIAN\Analise e Desenvolvimento de Sistemas\2024.1\ATP\TrabalhoATP\Estacionamento\bin\Debug\net8.0\Estacionamento.deps.json
+C:\Users\Cristhian\documents\CRISTHIAN\Analise e Desenvolvimento de Sistemas\2024.1\ATP\TrabalhoATP\Estacionamento\bin\Debug\net8.0\Estacionamento.runtimeconfig.json
+C:\Users\Cristhian\documents\CRISTHIAN\Analise e Desenvolvimento de Sistemas\2024.1\ATP\TrabalhoATP\Estacionamento\bin\Debug\net8.0\Estacionamento.dll
+C:\Users\Cristhian\documents\CRISTHIAN\Analise e Desenvolvimento de Sistemas\2024.1\ATP\TrabalhoATP\Estacionamento\bin\Debug\net8.0\Estacionamento.pdb
+C:\Users\Cristhian\documents\CRISTHIAN\Analise e Desenvolvimento de Sistemas\2024.1\ATP\TrabalhoATP\Estacionamento\obj\Debug\net8.0\Estacionamento.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Cristhian\documents\CRISTHIAN\Analise e Desenvolvimento de Sistemas\2024.1\ATP\TrabalhoATP\Estacionamento\obj\Debug\net8.0\Estacionamento.AssemblyInfoInputs.cache
+C:\Users\Cristhian\documents\CRISTHIAN\Analise e Desenvolvimento de Sistemas\2024.1\ATP\TrabalhoATP\Estacionamento\obj\Debug\net8.0\Estacionamento.AssemblyInfo.cs
+C:\Users\Cristhian\documents\CRISTHIAN\Analise e Desenvolvimento de Sistemas\2024.1\ATP\TrabalhoATP\Estacionamento\obj\Debug\net8.0\Estacionamento.csproj.CoreCompileInputs.cache
+C:\Users\Cristhian\documents\CRISTHIAN\Analise e Desenvolvimento de Sistemas\2024.1\ATP\TrabalhoATP\Estacionamento\obj\Debug\net8.0\Estacionamento.dll
+C:\Users\Cristhian\documents\CRISTHIAN\Analise e Desenvolvimento de Sistemas\2024.1\ATP\TrabalhoATP\Estacionamento\obj\Debug\net8.0\refint\Estacionamento.dll
+C:\Users\Cristhian\documents\CRISTHIAN\Analise e Desenvolvimento de Sistemas\2024.1\ATP\TrabalhoATP\Estacionamento\obj\Debug\net8.0\Estacionamento.pdb
+C:\Users\Cristhian\documents\CRISTHIAN\Analise e Desenvolvimento de Sistemas\2024.1\ATP\TrabalhoATP\Estacionamento\obj\Debug\net8.0\Estacionamento.genruntimeconfig.cache
+C:\Users\Cristhian\documents\CRISTHIAN\Analise e Desenvolvimento de Sistemas\2024.1\ATP\TrabalhoATP\Estacionamento\obj\Debug\net8.0\ref\Estacionamento.dll
