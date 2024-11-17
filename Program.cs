@@ -1,159 +1,64 @@
-﻿using System.Text.RegularExpressions;
-
-public class Program
+﻿public class Program
 {
+    static int vagasPrivativas, vagasPrioritarias, vagasComuns;
+    static string? ultimaEntradaPlaca, ultimaEntradaModelo, ultimaEntradaCor, ultimaEntradaProprietario;
+    static string? ultimaSaidaPlaca, ultimaSaidaModelo, ultimaSaidaCor, ultimaSaidaProprietario;
+
     public static void Main(string[] args)
     {
-        int vagasPrivativas, vagasPrioritarias, vagasComuns, vagasTotais;
-        int opcoes = 0;
-        List<veiculos> ListaVeiculos = new List<veiculos>();
-
         Console.WriteLine("Digite a quantidade de vagas privativas: ");
-        vagasPrivativas = int.Parse(Console.ReadLine());
+        vagasPrivativas = int.Parse(Console.ReadLine()!);
 
         Console.WriteLine("Digite a quantidade de vagas prioritárias: ");
-        vagasPrioritarias = int.Parse(Console.ReadLine());
+        vagasPrioritarias = int.Parse(Console.ReadLine()!);
 
         Console.WriteLine("Digite a quantidade de vagas comuns: ");
-        vagasComuns = int.Parse(Console.ReadLine());
+        vagasComuns = int.Parse(Console.ReadLine()!);
 
-        vagasTotais = vagasPrivativas + vagasPrioritarias + vagasComuns;
-
-        while (opcoes != 5)
+        int opcao;
+        do
         {
-            Console.WriteLine("Bem vindo ao estacionamento da cidade Fim do Mundo do Sul!\n Escolha uma das opções:\n 1. Registrar entrada\n 2. Registrar saída\n 3. Consultar vagas\n 4. Exibir resumo\n 5. Sair");
-
-            opcoes = int.Parse(Console.ReadLine());
-
-            switch (opcoes)
+            opcao = Menu();
+            switch (opcao)
             {
                 case 1:
+                    Console.WriteLine("Digite os dados do veículo para registrar entrada:");
+                    Console.Write("Placa: ");
+                    string placaEntrada = Console.ReadLine()!;
+                    Console.Write("Modelo: ");
+                    string modeloEntrada = Console.ReadLine()!;
+                    Console.Write("Cor: ");
+                    string corEntrada = Console.ReadLine()!;
+                    Console.Write("Proprietário: ");
+                    string proprietarioEntrada = Console.ReadLine()!;
+                    Console.Write("Tipo de vaga (1-Privativa, 2-Prioritária, 3-Comum): ");
+                    int tipoVagaEntrada = int.Parse(Console.ReadLine()!);
 
-                    veiculos veiculos = new veiculos();
-
-                    Console.WriteLine("Por favor informe seus dados.");
-
-                    Console.WriteLine("Digite seu nome: ");
-                    veiculos.proprietario = Console.ReadLine();
-
-                    Console.WriteLine("Digite sua idade: ");
-                    veiculos.idadeProprietario = int.Parse(Console.ReadLine());
-
-                    if (veiculos.idadeProprietario < 18)
-                    {
-                        Console.WriteLine("Informe uma idade válida");
-                    }
-
-                    Console.WriteLine("Informe o modelo de seu veículo: ");
-                    veiculos.modelo = Console.ReadLine();
-
-                    Console.WriteLine("Informe a placa de seu veículo: ");
-                    veiculos.placa = Console.ReadLine();
-
-                    Console.WriteLine("Informe a cor de seu veículo: ");
-                    veiculos.cor = Console.ReadLine();
-
-                    Console.WriteLine($"Informe o tipo de vaga que deseja ocupar:\n 1. Vaga privativa\n 2. Vaga Prioritária\n 3. Vaga comum");
-                    veiculos.tipoVaga = Console.ReadLine();
-
-                    if (veiculos.tipoVaga == "1")
-                    {
-                        if (vagasPrivativas > 0)
-                        {
-                            vagasPrivativas--;
-                            vagasTotais--;
-                            ListaVeiculos.Add(veiculos);
-
-                            Console.WriteLine($"Você ocupou uma vaga privativa. Obrigado pela preferência {veiculos.proprietario}!");
-                            Console.WriteLine($"O número de vagas privativas restantes é: {vagasPrivativas}");
-                        }
-                    }
-
-                    else if (veiculos.tipoVaga == "2")
-                    {
-                        if (vagasPrioritarias > 0)
-                        {
-                            if (veiculos.idadeProprietario >= 60)
-                            {
-                                vagasPrioritarias--;
-                                vagasTotais--;
-                                ListaVeiculos.Add(veiculos);
-
-                                Console.WriteLine($"Você ocupou uma vaga prioritária. Obrigado pela preferência {veiculos.proprietario}!");
-                                Console.WriteLine($"O número de vagas prioritárias restantes é: {vagasPrioritarias}");
-                            }
-
-                            else
-                            {
-                                Console.WriteLine("As vagas prioitárias são exclusivas para pessoas a partir de 60 anos.");
-                            }
-                        }
-                    }
-
-                    else if (veiculos.tipoVaga == "3")
-                    {
-                        if (vagasComuns > 0)
-                        {
-                            vagasComuns--;
-                            vagasTotais--;
-                            ListaVeiculos.Add(veiculos);
-
-                            Console.WriteLine($"Você ocupou uma vaga comum. Obrigado pela preferência {veiculos.proprietario}!");
-                            Console.WriteLine($"O número de vagas comuns restantes é: {vagasComuns}");
-                        }
-                    }
+                    RegistrarEntrada(placaEntrada, modeloEntrada, corEntrada, proprietarioEntrada, tipoVagaEntrada);
                     break;
 
                 case 2:
+                    Console.WriteLine("Digite os dados do veículo para registrar saída:");
+                    Console.Write("Placa: ");
+                    string placaSaida = Console.ReadLine()!;
+                    Console.Write("Modelo: ");
+                    string modeloSaida = Console.ReadLine()!;
+                    Console.Write("Cor: ");
+                    string corSaida = Console.ReadLine()!;
+                    Console.Write("Proprietário: ");
+                    string proprietarioSaida = Console.ReadLine()!;
+                    Console.Write("Tipo de vaga (1-Privativa, 2-Prioritária, 3-Comum): ");
+                    int tipoVagaSaida = int.Parse(Console.ReadLine()!);
 
-                    Console.WriteLine("Por favor informe a placa do carro: ");
-                    string Exist = Console.ReadLine();
-
-                    veiculos veiculosSaida = ListaVeiculos.Find(v => v.placa == Exist);
-
-                    if (veiculosSaida != null)
-                    {
-                        ListaVeiculos.Remove(veiculosSaida);
-
-                        if (veiculosSaida.tipoVaga == "1")
-                        {
-                            Console.WriteLine($"Muito obrigado pela preferência {veiculosSaida.proprietario}. Volte sempre");
-                            vagasPrivativas++;
-                            Console.WriteLine($"Vaga privativa liberada");
-                        }
-
-                        else if (veiculosSaida.tipoVaga == "2")
-                        {
-                            Console.WriteLine($"Muito obrigado pela preferência {veiculosSaida.proprietario}. Volte sempre");
-                            vagasPrioritarias++;
-                            Console.WriteLine($"Vaga prioritária liberada");
-                        }
-
-                        else if (veiculosSaida.tipoVaga == "3")
-                        {
-                            Console.WriteLine($"Muito obrigado pela preferência {veiculosSaida.proprietario}. Volte sempre");
-                            vagasComuns++;
-                            Console.WriteLine($"Vaga comum liberada");
-                        }
-
-                        Console.WriteLine($"O veículo {veiculosSaida.modelo} saiu do estacionamento.");
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("O veículo não foi encontrado");
-                    }
+                    RegistrarSaida(placaSaida, modeloSaida, corSaida, proprietarioSaida, tipoVagaSaida);
                     break;
 
                 case 3:
-
-                    Console.WriteLine($"O número de vagas privativas disponíveis é: {vagasPrivativas}");
-                    Console.WriteLine($"O número total de vagas prioritárias disponíveis é: {vagasPrioritarias}");
-                    Console.WriteLine($"O número total de vagas comuns disponíveis é: {vagasComuns}");
+                    ConsultarVagas();
                     break;
 
                 case 4:
-                    Console.WriteLine($"Resumo do estacionamento:\n Vagas totais disponíveis: {vagasTotais}\n Vagas privativas disponíveis: {vagasPrivativas}\n Vagas prioritárias disponíveis: {vagasPrioritarias}\n Vagas comuns disponíveis: {vagasComuns}");
+                    ExibirResumo();
                     break;
 
                 case 5:
@@ -161,14 +66,124 @@ public class Program
                     break;
 
                 default:
-                    Console.WriteLine("Insira uma opção válida.");
+                    Console.WriteLine("Opção inválida! Tente novamente.");
                     break;
             }
+        } while (opcao != 5);
+    }
+
+    static int Menu()
+    {
+        Console.WriteLine("\nBem-vindo ao estacionamento!");
+        Console.WriteLine("1. Registrar entrada");
+        Console.WriteLine("2. Registrar saída");
+        Console.WriteLine("3. Consultar vagas");
+        Console.WriteLine("4. Exibir resumo");
+        Console.WriteLine("5. Sair");
+        Console.Write("Escolha uma opção: ");
+        return int.Parse(Console.ReadLine()!);
+    }
+
+    static void RegistrarEntrada(string placa, string modelo, string cor, string proprietario, int tipoVaga)
+    {
+        switch (tipoVaga)
+        {
+            case 1:
+                if (vagasPrivativas > 0)
+                {
+                    vagasPrivativas--;
+                    ultimaEntradaPlaca = placa;
+                    ultimaEntradaModelo = modelo;
+                    ultimaEntradaCor = cor;
+                    ultimaEntradaProprietario = proprietario;
+                    Console.WriteLine("Vaga privativa ocupada com sucesso!");
+                }
+                else
+                {
+                    Console.WriteLine("Não há vagas privativas disponíveis.");
+                }
+                break;
+
+            case 2:
+                if (vagasPrioritarias > 0)
+                {
+                    vagasPrioritarias--;
+                    ultimaEntradaPlaca = placa;
+                    ultimaEntradaModelo = modelo;
+                    ultimaEntradaCor = cor;
+                    ultimaEntradaProprietario = proprietario;
+                    Console.WriteLine("Vaga prioritária ocupada com sucesso!");
+                }
+                else
+                {
+                    Console.WriteLine("Não há vagas prioritárias disponíveis.");
+                }
+                break;
+
+            case 3:
+                if (vagasComuns > 0)
+                {
+                    vagasComuns--;
+                    ultimaEntradaPlaca = placa;
+                    ultimaEntradaModelo = modelo;
+                    ultimaEntradaCor = cor;
+                    ultimaEntradaProprietario = proprietario;
+                    Console.WriteLine("Vaga comum ocupada com sucesso!");
+                }
+                else
+                {
+                    Console.WriteLine("Não há vagas comuns disponíveis.");
+                }
+                break;
+
+            default:
+                Console.WriteLine("Tipo de vaga inválido!");
+                break;
         }
     }
-}
-public class veiculos
-{
-    public string placa, modelo, cor, proprietario, tipoVaga;
-    public int idadeProprietario = 0;
+
+    static void RegistrarSaida(string placa, string modelo, string cor, string proprietario, int tipoVaga)
+    {
+        switch (tipoVaga)
+        {
+            case 1:
+                vagasPrivativas++;
+                break;
+
+            case 2:
+                vagasPrioritarias++;
+                break;
+
+            case 3:
+                vagasComuns++;
+                break;
+
+            default:
+                Console.WriteLine("Tipo de vaga inválido!");
+                return;
+        }
+
+        ultimaSaidaPlaca = placa;
+        ultimaSaidaModelo = modelo;
+        ultimaSaidaCor = cor;
+        ultimaSaidaProprietario = proprietario;
+        Console.WriteLine("Veículo registrado como saída com sucesso!");
+    }
+
+    static void ConsultarVagas()
+    {
+        Console.WriteLine($"Vagas privativas disponíveis: {vagasPrivativas}");
+        Console.WriteLine($"Vagas prioritárias disponíveis: {vagasPrioritarias}");
+        Console.WriteLine($"Vagas comuns disponíveis: {vagasComuns}");
+    }
+
+    static void ExibirResumo()
+    {
+        Console.WriteLine("Resumo do estacionamento:");
+        Console.WriteLine($"Vagas privativas disponíveis: {vagasPrivativas}");
+        Console.WriteLine($"Vagas prioritárias disponíveis: {vagasPrioritarias}");
+        Console.WriteLine($"Vagas comuns disponíveis: {vagasComuns}");
+        Console.WriteLine($"Último veículo a entrar: {ultimaEntradaPlaca}, {ultimaEntradaModelo}, {ultimaEntradaCor}, {ultimaEntradaProprietario}");
+        Console.WriteLine($"Último veículo a sair: {ultimaSaidaPlaca}, {ultimaSaidaModelo}, {ultimaSaidaCor}, {ultimaSaidaProprietario}");
+    }
 }
